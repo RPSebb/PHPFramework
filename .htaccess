@@ -1,0 +1,16 @@
+RewriteEngine On
+
+# this should be equal to the location of the index.php
+# exemple : 
+# # www/api/index.php => /api/
+# # www/project_1/version_2.0/index.php => /project_1/version_2.0/
+RewriteBase /api/
+
+# Redirect all request https://my-domain.com/api/ to index.php
+# Except .js request, so your html can load js files
+# You can add more exception like images or videos
+RewriteCond %{REQUEST_URI} !-f
+RewriteCond %{REQUEST_URI} !-d
+RewriteCond %{REQUEST_URI} !\.js$
+
+RewriteRule ^.* index.php [L]
