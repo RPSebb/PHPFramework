@@ -13,9 +13,18 @@ class Column implements Stringable {
      * Alternatively, you can leave this empty and name the property exactly the same as in database.
      */
     protected string $name;
+
+    /** Supported type are : interger, float, string, date, boolean */
     protected string $type;
+
+    /** Not used */
     protected int $size;
-    protected bool $auto, $null;
+
+    /** Not used */
+    protected bool $auto;
+
+    /** Null allowed state */
+    protected bool $null;
 
     public function __construct(
         string $name  = '',

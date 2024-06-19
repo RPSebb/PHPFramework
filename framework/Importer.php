@@ -1,6 +1,11 @@
 <?php
 class Importer {
-    public function import($folder) {
+
+    /** Import all php file of a folder 
+     * 
+     * @return array list of files without .php extension
+    */
+    public function import(string $folder) {
         $handle = opendir($folder);
         $name = [];
         while(false !== ($entry = readdir($handle))) {
