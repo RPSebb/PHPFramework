@@ -1,16 +1,5 @@
 <?php
 class Importer {
-    public function importa($folder) {
-        $filenames = scandir($folder);
-        $name = [];
-        foreach($filenames as $filename) {
-            if(substr($filename, -4, 4) !== '.php') { continue; }
-            include_once($folder.'/'.$filename);
-            $name[] = substr($filename, 0, -4);
-        }
-        return $name;
-    }
-
     public function import($folder) {
         $handle = opendir($folder);
         $name = [];

@@ -1,5 +1,12 @@
 <?php
 class Configuration {
+
+    /** Try to open an .env file and store all contained values
+     * 
+     * The priority is .env.local -> .env -> .env.dev -> .env.prod
+     * 
+     * The research will stop at the first file founded
+     */
     public function __construct() {
         $this->getServerInformations();
         $names = array('.env.local', '.env', '.env.dev', '.env.prod');
@@ -17,6 +24,7 @@ class Configuration {
         throw new Exception('Configuration file not founded', 0);
     }
 
+    /** Usefull informations for request creation */
     private function getServerInformations() {
         $scriptFolder = preg_replace('/\/[^\/]*$/', '', $_SERVER['SCRIPT_NAME']);
         $server = $_SERVER['SERVER_NAME'];

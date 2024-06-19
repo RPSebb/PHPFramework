@@ -3,15 +3,28 @@ abstract class AbstractTest {
     protected $obj;
 
     public function __construct($obj = null) {
+        // Store the object to test on
         $this->obj = $obj;
     }
 
+    /** Execute test method and display result in javascript console
+     * 
+     * @param string $method name of the test method to execute
+     * 
+     * @param string $description a brieve description of the test method
+     * 
+     * @param mixed $expected the expected result
+     * 
+     * @param mixed $args args of the method
+     * 
+     */
     protected function assert(string $method, string $description, mixed $expected, mixed $args) : void {
         $output = call_user_func_array(array($this->obj,  $method),  $args);
         $success = $output === $expected;
         $this->printResult($description, $args, $expected, $output, $success);
     }
 
+    /** Display test result in the javascript console */
     protected function printResult($description, $args, $expected, $output, $success) : void {
         $description = $this->toJavascript($description);
         $args        = $this->toJavascript($args);
@@ -25,6 +38,7 @@ abstract class AbstractTest {
         );
     }
 
+    /** Try to keep javascript types colors */
     private function toJavascript($value) : string {
         $number = ['integer', 'float'];
         $type = gettype($value);

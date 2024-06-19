@@ -1,6 +1,7 @@
 <?php
 class ArrayVisualizer {
 
+    /** Print recursively values of an array */
     function print($arr, $depth = 0) {
         $filled = !empty($arr);
         $keys = array_keys($arr);
@@ -26,6 +27,7 @@ class ArrayVisualizer {
         echo(str_repeat('&emsp;', $depth).'}<br>');
     }
 
+    /** Convert an array into a string json */
     function json(array $arr) : string {
         $text = '{';
         $lastKey = array_key_last($arr);
